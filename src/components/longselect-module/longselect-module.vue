@@ -1,0 +1,113 @@
+<template>
+	<!-- 长按弹出操作 -->
+	<view class="longActiveSelect" :animation='longActiveAm' :style="{'top':showTop,'left':showLeft}">
+		<view @tap="renderImg">截图</view>
+		<view @tap="deleteCom">删除</view>
+		<view @tap="replyCom">回复</view>
+		<view @tap="cancel">取消</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		name: "yy-long-select-item",
+		props: {
+			coordinate: {
+				type: Object,
+			},
+			hidden: {
+				type: Boolean,
+			},
+		},
+		watch: {
+			hidden(newV, oldV) {
+				if (newV) {
+					this._showSelect(this.coordinate)
+				} else {
+					this._hiddenSelect()
+				}
+			}
+		},
+		data() {
+			return {
+				longActiveAm: '',
+				showTop: '0rpx',
+				showLeft: '0rpx',
+			};
+		},
+		methods: {
+			renderImg() {
+				this.$emit('renderImg')
+				this.cancel()
+			},
+			deleteCom() {
+				uni.showModal({
+					title: '提示',
+					content: '确定删除吗？',
+					success: res => {
+						if (res.confirm) {
+							this.$emit('deleteCom', this.coordinate.index)
+							this.cancel()
+						}
+					}
+				})
+			},
+			replyCom() {
+				this.$emit('replyCom', this.coordinate.index)
+				this.cancel()
+			},
+			cancel(){
+				this._hiddenSelect()
+				this.$emit('cancel')
+			},
+			//展开选择item
+			_showSelect(e) {
+				//短震动
+				uni.vibrateShort({});
+				this.showLeft = e.x + 'px'
+				this.showTop = e.y + 'px'
+				let animation = uni.createAnimation({
+					duration: 200,
+					timingFunction: 'ease',
+				})
+				animation.width('180rpx').height('440rpx').step();
+				this.longActiveAm = animation.export()
+			},
+			//隐藏选择item
+			_hiddenSelect() {
+				let animation = uni.createAnimation({
+					duration: 100,
+					timingFunction: 'ease',
+				})
+				animation.width('0rpx').height('0rpx').step();
+				this.longActiveAm = animation.export()
+			},
+		}
+	}
+</script>
+
+<style lang="scss">
+	.longActiveSelect {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		overflow: hidden;
+		background-color: white;
+		width: 0rpx;
+		height: 0rpx;
+		box-shadow: 0 0 20rpx 0rpx rgb(202, 202, 202);
+
+		&>view {
+			height: 110rpx;
+			box-sizing: border-box;
+			padding-top: 30rpx;
+			padding-bottom: 30rpx;
+			padding-left: 30rpx;
+
+			&:active {
+				background-color: var(--grayActive);
+			}
+		}
+	}
+</style>

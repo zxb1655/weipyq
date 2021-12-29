@@ -1,0 +1,150 @@
+
+
+/* fadeInMiddle */
+.XB_fadeInMiddle {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 99;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s;
+}
+.XB_fadeInMiddle.show{
+	transform: translate(-50%, -50%);
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: .2s;
+}
+.XB_fadeInMiddle.hide{
+	transition-delay: 0s;
+}
+
+/* fadeScaleHeightToLowInMiddle */
+.XB_fadeScaleHeightToLowInMiddle {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 99;
+	transform: translate(-50%, -50%) scale(3);
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s;
+}
+.XB_fadeScaleHeightToLowInMiddle.show{
+	transform: translate(-50%, -50%) scale(1);
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: .2s;
+}
+.XB_fadeScaleHeightToLowInMiddle.hide{
+	transition-delay: 0s;
+}
+
+/* fadeInLeft */
+.XB_fadeInLeft {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 99;
+	transform: translateX(100%);
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s;
+}
+.XB_fadeInLeft.show{
+	transform: translateX(0);
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: .2s;
+}
+.XB_fadeInLeft.hide{
+	transition-delay: 0s;
+}
+
+/* fadeInRight */
+.XB_fadeInRight {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	transform: translateX(-100%);
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s;
+}
+.XB_fadeInRight.show{
+	transform: translateX(0);
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: .2s;
+}
+.XB_fadeInRight.hide{
+	transition-delay: 0s;
+}
+
+/* fadeInDown */
+.XB_fadeInDown {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	transform: translateY(-100%);
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s;
+}
+.XB_fadeInDown.show{
+	transform: translateY(0);
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: .2s;
+}
+.XB_fadeInDown.hide{
+	transition-delay: 0s;
+}
+
+/* fadeInUp */
+.XB_fadeInUp{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 99;
+	transform: translateY(100%);
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s;
+}
+.XB_fadeInUp.show{
+	transform: translateY(0);
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: .2s;
+}
+.XB_fadeInUp.hide{
+	transition-delay: 0s;
+}
+
+/* mask */
+.fadeIn_mask{
+	height: 100vh;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.8);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .3s;
+	transition-delay: .2s;
+	z-index: 99;
+}
+.fadeIn_mask.show{
+	opacity: 1;
+	pointer-events: auto;
+	transition-delay: 0s;
+}
+.fadeIn_mask.hide{
+	transition-delay: .2s;
+}
