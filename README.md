@@ -9,9 +9,9 @@
 - 链接样式
 - 主图样式
 
-<img style="width:200px;float:left;" src="https://cdn.jzzz66.cn/type2.jpeg" />
-<img style="width:200px;float:left;" src="https://cdn.jzzz66.cn/type1.jpeg" />
-<img style="width:200px;float:left;" src="https://cdn.jzzz66.cn/type3.jpeg" />
+<img style="width:200px; float:left;" src="https://cdn.jzzz66.cn/type2.jpeg" />
+<img style="width:200px; float:left;" src="https://cdn.jzzz66.cn/type1.jpeg" />
+<img style="width:200px; float:left;" src="https://cdn.jzzz66.cn/type3.jpeg" />
 
 ## 如何运行
 
