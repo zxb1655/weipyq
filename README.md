@@ -9,24 +9,30 @@
 - 链接样式
 - 主图样式
 
-<img style="width:200px;" src="https://cdn.jzzz66.cn/type1.jpeg" />
-<img style="width:200px;" src="https://cdn.jzzz66.cn/type2.jpeg" />
-<img style="width:200px;" src="https://cdn.jzzz66.cn/type3.jpeg" />
-  
-## 如何运行   
+<img style="width:200px;" src="https://cdn.jzzz66.cn/type2.jpeg" /><img style="width:200px;" src="https://cdn.jzzz66.cn/type1.jpeg" /><img style="width:200px;" src="https://cdn.jzzz66.cn/type3.jpeg" />
+
+## 如何运行
+
 - 克隆项目到本地
+
 ```
 git clone https://github.com/zxb1655/weipyq
 ```
+
 - 安装依赖
+
 ```
 yarn
 ```
+
 - 运行项目
+
 ```
 yarn dev:h5
 ```
+
 - 打包项目
+
 ```
 yarn build:h5
 ```
