@@ -67,7 +67,7 @@
 				this.deviceWidth = uni.getSystemInfoSync().windowWidth
 
 				//初始化键盘input高度
-				let px = this.rpxTorpx(40);
+				let px = this.upxToupx(40);
 				this.keyboardHeight = px - 4
 			},
 			blur() {
@@ -114,15 +114,15 @@
 					}
 				}
 			},
-			rpxTorpx(rpx) {
+			upxToupx(upx) {
 				let deviceWidth = uni.getSystemInfoSync().windowWidth;
-				let px = (deviceWidth / 750) * Number(rpx);
+				let px = (deviceWidth / 750) * Number(upx);
 				return px;
 			},
-			pxTorpx(px) {
+			pxToupx(px) {
 				let deviceWidth = uni.getSystemInfoSync().windowWidth;
-				let rpx = (750 / Number(px)) * deviceWidth;
-				return rpx;
+				let upx = (750 / Number(px)) * deviceWidth;
+				return upx;
 			},
 		}
 	}
@@ -133,8 +133,8 @@
 		bottom: 0;
 		display: flex;
 		width: 100vw;
-		padding: 20rpx;
-		padding-left: 35rpx;
+		padding: 20upx;
+		padding-left: 35upx;
 		background-color: var(--grayLight);
 		align-items: center;
 		box-sizing: border-box;
@@ -143,30 +143,30 @@
 			flex: 7;
 			caret-color: #07c160;
 			background-color: white;
-			padding: 20rpx;
-			border-radius: 10rpx;
+			padding: 20upx;
+			border-radius: 10upx;
 		}
 
 		.emojiIcon {
-			padding-left: 25rpx;
-			padding-right: 20rpx;
+			padding-left: 25upx;
+			padding-right: 20upx;
 			font-size: 0;
 
 			&::before {
 				content: "\e60b";
-				font-size: 55rpx;
+				font-size: 55upx;
 			}
 		}
 
 		.sentBtn {
-			padding: 25rpx;
-			padding-top: 10rpx;
-			padding-bottom: 10rpx;
+			padding: 25upx;
+			padding-top: 10upx;
+			padding-bottom: 10upx;
 			text-align: center;
 			color: #c6c6c6;
 			border: #c6c6c6 1px solid;
-			border-radius: 10rpx;
-			font-size: 28rpx;
+			border-radius: 10upx;
+			font-size: 28upx;
 		}
 	}
 </style>

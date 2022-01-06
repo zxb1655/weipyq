@@ -84,7 +84,7 @@
 			position: fixed;
 			bottom: 0;
 			width: 100vw;
-			height: 150rpx;
+			height: 150upx;
 		}
 		
 		.autoImg{
@@ -92,13 +92,13 @@
 		}
 		.autoComImg{
 			width: 100vw;
-			margin-top: -134rpx;
-			margin-bottom: 150rpx;
+			margin-top: -134upx;
+			margin-bottom: 150upx;
 		}
 		
 		.hotBox{
-			width: 200rpx;
-			height: 200rpx;
+			width: 200upx;
+			height: 200upx;
 			position: fixed;
 			z-index: 1;
 			top: 0;
@@ -111,7 +111,7 @@
 		}
 
 		.comment {
-			padding-bottom: 2rpx;
+			padding-bottom: 2upx;
 		}
 	}
 </style>

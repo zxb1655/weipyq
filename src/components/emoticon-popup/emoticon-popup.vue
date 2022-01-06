@@ -54,25 +54,25 @@
 
 <style lang="scss">
 	.emoticon {
-		width: 765rpx;
+		width: 765upx;
 		height: 100vh;
 
 		.emo_mask {
-			width: 765rpx;
+			width: 765upx;
 			height: 60vh;
 		}
 
 		.emo_content {
-			width: 765rpx;
+			width: 765upx;
 			height: 40vh;
-			padding: 20rpx 0;
+			padding: 20upx 0;
 			background-color: #f7f7f7;
 		}
 		
 		.emo_img{
-			width: 50rpx;
-			height: 50rpx;
-			margin: 20rpx;
+			width: 50upx;
+			height: 50upx;
+			margin: 20upx;
 		}
 	}
 </style>

@@ -85,8 +85,8 @@
 		}
 
 		.hotBox {
-			width: 200rpx;
-			height: 200rpx;
+			width: 200upx;
+			height: 200upx;
 			position: fixed;
 			z-index: 10;
 			top: 0;
@@ -100,47 +100,47 @@
 		}
 
 		.footer {
-			width: 765rpx;
-			height: 90rpx;
+			width: 765upx;
+			height: 90upx;
 			box-sizing: border-box;
-			margin-top: -2rpx;
+			margin-top: -2upx;
 			background-color: #343233;
 			color: #FFFFFF;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			padding: 0 40rpx 10rpx 30rpx;
+			padding: 0 40upx 10upx 30upx;
 
 			.icon-good {
-				font-size: 42rpx;
-				margin-right: 6rpx;
+				font-size: 42upx;
+				margin-right: 6upx;
 				vertical-align: middle;
 			}
 
 			.zan {
-				font-size: 32rpx;
-				margin-right: 16rpx;
+				font-size: 32upx;
+				margin-right: 16upx;
 				position: relative;
-				bottom: 2rpx;
+				bottom: 2upx;
 			}
 
 			.moreright {
-				margin-right: 50rpx;
+				margin-right: 50upx;
 			}
 
 			.icon-chat {
-				font-size: 38rpx;
+				font-size: 38upx;
 				font-weight: 900;
-				margin-right: 8rpx;
+				margin-right: 8upx;
 				vertical-align: middle;
 				position: relative;
-				top: 2rpx;
+				top: 2upx;
 			}
 
 			.comment {
-				font-size: 32rpx;
+				font-size: 32upx;
 				position: relative;
-				bottom: 2rpx;
+				bottom: 2upx;
 			}
 		}
 	}

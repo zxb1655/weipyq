@@ -1,262 +1,318 @@
 <template>
-	<view class="pageedit">
-		<weiarticle-popup :isShow="isShowArticle" @submit="getArticleInfo" @close="isShowArticle = false" />
-		<userinfo-popup v-if="isShowUserInfo" :isShow="isShowUserInfo" @close="isShowUserInfo = false"
-			@send="goArticle" />
-		<view class="mar-l-r-40 content-edit">
-			<!-- 文本输入框 -->
-			<view class="content-text">
-				<textarea placeholder="这一刻的想法..." v-model="pageData.article.contentText" maxlength='-1'></textarea>
-			</view>
+  <view class="pageedit">
+    <weiarticle-popup
+      :isShow="isShowArticle"
+      @submit="getArticleInfo"
+      @close="isShowArticle = false"
+    />
+    <userinfo-popup
+      v-if="isShowUserInfo"
+      :isShow="isShowUserInfo"
+      @close="isShowUserInfo = false"
+      @send="goArticle"
+    />
+    <view class="mar-l-r-40 content-edit">
+      <!-- 文本输入框 -->
+      <view class="content-text">
+        <textarea
+          placeholder="这一刻的想法..."
+          v-model="pageData.article.contentText"
+          maxlength="-1"
+        ></textarea>
+      </view>
 
-			<!-- 链接 -->
-			<view class="link" v-if="pageData.type == 1">
-				<view class="pypLink">
-					<image @tap="uploadImg" class="linkImg" :src="pageData.linkInfo.linkImg" mode="aspectFill"></image>
-					<text class="linkText" style="height: auto;" @tap="inputLink"
-						v-if="!isInput">{{pageData.linkInfo.linkText}}</text>
-					<textarea focus class="linkText" @blur="isInput = false" v-model="pageData.linkInfo.linkText"
-						placeholder="点击输入链接描述" v-else />
-				</view>
-				<view class="linkBtn" @tap="showPopup">
-					获取公众号文章信息
-				</view>
-			</view>
+      <!-- 链接 -->
+      <view class="link" v-if="pageData.type == 1">
+        <view class="pypLink">
+          <image
+            @tap="uploadImg"
+            class="linkImg"
+            :src="pageData.linkInfo.linkImg"
+            mode="aspectFill"
+          ></image>
+          <text
+            class="linkText"
+            style="height: auto"
+            @tap="inputLink"
+            v-if="!isInput"
+            >{{ pageData.linkInfo.linkText }}</text
+          >
+          <textarea
+            focus
+            class="linkText"
+            @blur="isInput = false"
+            v-model="pageData.linkInfo.linkText"
+            placeholder="点击输入链接描述"
+            v-else
+          />
+        </view>
+        <view class="linkBtn" @tap="showPopup"> 获取公众号文章信息 </view>
+      </view>
 
-			<view v-if="pageData.type != 1">
-				<upload @upLoader='getFiles' />
-			</view>
+      <view v-if="pageData.type != 1">
+        <upload @upLoader="getFiles" />
+      </view>
+    </view>
 
-		</view>
-
-		<!-- 预设置 -->
-		<view class="mar-l-r-40 item-group">
-			<edit-item title='点赞量' icon='good' :max="500" type="slide" @slideValue="slideValue"
-				:finish='status.item1' />
-			<edit-item v-if="pageData.type == 2" title='评论量' icon='chat' type="slide" @slideValue="slideCommentValue"
-				:finish='status.item4' />
-			<edit-item title='是否开启顶部导航' icon='link' type="switch" @switchValue='switchValue' :finish='status.item2' />
-			<edit-item v-if="pageData.navbar" :max="100" title='顶部导航电量' icon='80dianliang' type="slide"
-				@slideValue='dianValue' :finish='status.item3' />
-			<picker mode='time' @change='getTime'>
-				<edit-item v-if="pageData.navbar" title='顶部导航时间' icon='time' arrow :right-text='pageData.navbarTime'
-					:finish='status.item5' />
-			</picker>
-		</view>
-		<view class="send-out">
-			<view class="send iconfont" @tap="send">发 表</view>
-		</view>
-	</view>
+    <!-- 预设置 -->
+    <view class="mar-l-r-40 item-group">
+      <edit-item
+        title="点赞量"
+        icon="good"
+        :max="500"
+        type="slide"
+        @slideValue="slideValue"
+        :finish="status.item1"
+      />
+      <edit-item
+        v-if="pageData.type == 2"
+        title="评论量"
+        icon="chat"
+        type="slide"
+        @slideValue="slideCommentValue"
+        :finish="status.item4"
+      />
+      <edit-item
+        title="是否开启顶部导航"
+        icon="link"
+        type="switch"
+        @switchValue="switchValue"
+        :finish="status.item2"
+      />
+      <edit-item
+        v-if="pageData.navbar"
+        :max="100"
+        title="顶部导航电量"
+        icon="80dianliang"
+        type="slide"
+        @slideValue="dianValue"
+        :finish="status.item3"
+      />
+      <picker mode="time" @change="getTime">
+        <edit-item
+          v-if="pageData.navbar"
+          title="顶部导航时间"
+          icon="time"
+          arrow
+          :right-text="pageData.navbarTime"
+          :finish="status.item5"
+        />
+      </picker>
+    </view>
+    <view class="send-out">
+      <view class="send iconfont" @tap="send">发 表</view>
+    </view>
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				isInput: false,
-				pageData: {
-					type: 0,
-					navbar: false,
-					navbarTime: '',
-					dian: 0,
-					linkInfo: {
-						linkText: '点击输入公众号文章描述',
-						linkImg: 'https://weiapi.jzzz66.cn/avatar.png',
-					},
-					article: {
-						username: '',
-						avatar: '',
-						contentText: '',
-						pictureList: [],
-						date: {
-							date: '',
-							time: ''
-						}
-					},
-					comment: {
-						commentNum: 0,
-						goodUserAvatarList: 0,
-						commentUserList: []
-					}
-				},
-				status: {
-					item1: false,
-					item2: false,
-					item3: false,
-					item4: false,
-					item5: false
-				},
-				isShowArticle: false,
-				isShowUserInfo: false,
-			}
-		},
-		onLoad(option) {
-			this.pageData.type = option.type
-		},
-		methods: {
-			getTime(e) {
-				this.pageData.navbarTime = e.detail.value
-				this.status.item5 = true
-			},
-			getArticleInfo(data) {
-				this.isShowArticle = false
-				this.pageData.linkInfo = data
-			},
-			inputLink() {
-				this.isInput = true
-			},
-			showPopup() {
-				this.isShowArticle = true
-			},
-			uploadImg() {
-				uni.chooseImage({
-					sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-					sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-					count: 1,
-					success: (res) => {
-						this.pageData.linkInfo.linkImg = res.tempFilePaths[0]
-					}
-				})
-			},
-			dianValue(value) {
-				this.pageData.dian = value
-				this.status.item3 = value > 0
-			},
-			slideCommentValue(value) {
-				this.pageData.comment.commentNum = value
-				this.status.item4 = value > 0
-			},
-			slideValue(value) {
-				this.pageData.comment.goodUserAvatarList = value
-				this.status.item1 = value > 0
-			},
-			switchValue(value) {
-				this.pageData.navbar = value
-				this.status.item2 = value
-			},
-			getFiles(data) {
-				this.pageData.article.pictureList = data
-			},
-			send() {
-				this.isShowUserInfo = true
-			},
-			async goArticle(userinfo) {
-				this.pageData.article.contentText = await this.$util.emoticonReplace(this.pageData.article.contentText)
-				this.pageData.article.username = userinfo.username
-				this.pageData.article.avatar = userinfo.avatar
-				this.pageData.article.date = userinfo.date
-				let data = JSON.stringify(this.pageData)
-				if (this.pageData.type == 2) {
-					uni.navigateTo({
-						url: `../main/main?data=${(data)}`,
-					})
-				} else {
-					uni.navigateTo({
-						url: `../article/article?data=${(data)}`,
-					})
-				}
-			}
-		}
-	}
+export default {
+  data() {
+    return {
+      isInput: false,
+      pageData: {
+        type: 0,
+        navbar: false,
+        navbarTime: "",
+        dian: 0,
+        linkInfo: {
+          linkText: "点击输入公众号文章描述",
+          linkImg: "https://weiapi.jzzz66.cn/avatar.png",
+        },
+        article: {
+          username: "",
+          avatar: "",
+          contentText: "",
+          pictureList: [],
+          date: {
+            date: "",
+            time: "",
+          },
+        },
+        comment: {
+          commentNum: 0,
+          goodUserAvatarList: 0,
+          commentUserList: [],
+        },
+      },
+      status: {
+        item1: false,
+        item2: false,
+        item3: false,
+        item4: false,
+        item5: false,
+      },
+      isShowArticle: false,
+      isShowUserInfo: false,
+    };
+  },
+  onLoad(option) {
+    this.pageData.type = option.type;
+  },
+  methods: {
+    getTime(e) {
+      this.pageData.navbarTime = e.detail.value;
+      this.status.item5 = true;
+    },
+    getArticleInfo(data) {
+      this.isShowArticle = false;
+      this.pageData.linkInfo = data;
+    },
+    inputLink() {
+      this.isInput = true;
+    },
+    showPopup() {
+      this.isShowArticle = true;
+    },
+    uploadImg() {
+      uni.chooseImage({
+        sizeType: ["original", "compressed"], // 可以指定是原图还是压缩图，默认二者都有
+        sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
+        count: 1,
+        success: (res) => {
+          this.pageData.linkInfo.linkImg = res.tempFilePaths[0];
+        },
+      });
+    },
+    dianValue(value) {
+      this.pageData.dian = value;
+      this.status.item3 = value > 0;
+    },
+    slideCommentValue(value) {
+      this.pageData.comment.commentNum = value;
+      this.status.item4 = value > 0;
+    },
+    slideValue(value) {
+      this.pageData.comment.goodUserAvatarList = value;
+      this.status.item1 = value > 0;
+    },
+    switchValue(value) {
+      this.pageData.navbar = value;
+      this.status.item2 = value;
+    },
+    getFiles(data) {
+      this.pageData.article.pictureList = data;
+    },
+    send() {
+      this.isShowUserInfo = true;
+    },
+    async goArticle(userinfo) {
+      this.pageData.article.contentText = await this.$util.emoticonReplace(
+        this.pageData.article.contentText
+      );
+      this.pageData.article.username = userinfo.username;
+      this.pageData.article.avatar = userinfo.avatar;
+      this.pageData.article.date = userinfo.date;
+      let data = JSON.stringify(this.pageData);
+      if (this.pageData.type == 2) {
+        uni.navigateTo({
+          url: `../main/main?data=${data}`,
+        });
+      } else {
+        uni.navigateTo({
+          url: `../article/article?data=${data}`,
+        });
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-	.uni-picker-container {
-		z-index: 9;
-	}
-	.pageedit {
-		.emojiIcon {
-			position: relative;
-			z-index: 10;
-			padding-left: 25rpx;
-			padding-right: 20rpx;
-			font-size: 0;
+.uni-picker-container {
+  z-index: 9;
+}
+.pageedit {
+  .emojiIcon {
+    position: relative;
+    z-index: 10;
+    padding-left: 25upx;
+    padding-right: 20upx;
+    font-size: 0;
 
-			&::before {
-				content: "\e60b";
-				font-size: 55rpx;
-			}
-		}
+    &::before {
+      content: "\e60b";
+      font-size: 55upx;
+    }
+  }
 
-		.link {
-			.pypLink {
-				height: 80rpx;
-				margin-top: 10rpx;
-				display: flex;
-				align-items: center;
-				background-color: var(--grayLight);
-				padding: 12rpx 20rpx 12rpx 12rpx;
-				position: relative;
-				z-index: 10;
-			}
+  .link {
+    .pypLink {
+      height: 80upx;
+      margin-top: 10upx;
+      display: flex;
+      align-items: center;
+      background-color: var(--grayLight);
+      padding: 12upx 20upx 12upx 12upx;
+      position: relative;
+      z-index: 10;
+    }
 
-			.linkBtn {
-				float: right;
-				font-size: 22rpx;
-				display: inline-block;
-				margin-top: 30rpx;
-				border-radius: 5px;
-				background-color: var(--green);
-				padding: 8rpx 20rpx;
-				color: white;
-			}
+    .linkBtn {
+      float: right;
+      font-size: 22upx;
+      display: inline-block;
+      margin-top: 30upx;
+      border-radius: 5px;
+      background-color: var(--green);
+      padding: 8upx 20upx;
+      color: white;
+    }
 
-			.linkImg {
-				width: 90rpx;
-				height: 90rpx;
-				margin-right: 10rpx;
-			}
+    .linkImg {
+      width: 90upx;
+      height: 90upx;
+      margin-right: 10upx;
+    }
 
-			.linkText {
-				font-size: 26rpx;
-				width: 100%;
-				height: 100%;
-				line-height: 1.5;
-				flex: 1;
-				vertical-align: middle;
-			}
-		}
+    .linkText {
+      font-size: 26upx;
+      width: 100%;
+      height: 100%;
+      line-height: 1.5;
+      flex: 1;
+      vertical-align: middle;
+    }
+  }
 
-		.mar-l-r-40 {
-			margin-left: 40rpx;
-			margin-right: 40rpx;
-		}
+  .mar-l-r-40 {
+    margin-left: 40upx;
+    margin-right: 40upx;
+  }
 
+  .content-edit {
+    margin-top: 40upx;
+    margin-bottom: 100upx;
+  }
 
-		.content-edit {
-			margin-top: 40rpx;
-			margin-bottom: 100rpx;
-		}
+  .content-text {
+    width: 100%;
+    height: 100px;
+  }
 
-		.content-text {
-			width: 100%;
-			height: 100px;
-		}
+  .content-text {
+    textarea {
+      width: 100%;
+      font-size: 30upx;
+    }
+  }
 
-		.content-text {
-			textarea {
-				width: 100%;
-				font-size: 30rpx;
-			}
-		}
+  .item-group {
+    border-top: 1upx #f1f1f1 solid;
+    border-bottom: 1upx #f1f1f1 solid;
+  }
 
-		.item-group {
-			border-top: 1rpx #f1f1f1 solid;
-			border-bottom: 1rpx #f1f1f1 solid;
-		}
+  .send {
+    display: inline-block;
+    border-radius: 10upx;
+    background-color: var(--green);
+    padding: 10upx 40upx;
+    color: white;
+  }
 
-		.send {
-			display: inline-block;
-			border-radius: 10rpx;
-			background-color: var(--green);
-			padding: 10rpx 40rpx;
-			color: white;
-		}
-
-		.send-out {
-			text-align: center;
-			padding: 50rpx;
-		}
-
-	}
+  .send-out {
+    text-align: center;
+    padding: 50upx;
+  }
+}
 </style>
