@@ -1,4 +1,6 @@
 # pyqzan
+- node版本号 v18.12.1
+- yarn版本号 v1.22.22
 
 ## Project setup
 ```

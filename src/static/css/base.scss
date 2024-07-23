@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200upx 0;
+  box-sizing: border-box;
+}
+
+body {
+  --blue: #586b95;
+  --grayLight: #f7f7f7;
+  --gray: #7f7f7f;
+  --grayActive: #e0e0e0;
+  --blackLight: #2e2e2e;
+  --blackLight2: #292929;
+  --green: #07c160;
+}
+
+.emoticon {
+  width: 50upx;
+  height: 50upx;
+  vertical-align: middle;
+}
+
+.active-gray:active {
+  background-color: var(--grayActive);
+}

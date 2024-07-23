@@ -13,5 +13,6 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+@import "/static/iconfont.css";
+@import "/static/css/index.scss";
 </style>

@@ -1,0 +1,9 @@
+@mixin position($pos:absolute,$top:0,$left:0){
+  position:$pos;
+  top:$top;
+  left:$left;
+}
+@mixin wH($w:0,$h:0) {
+  width:$w;
+  height: $h;
+}
