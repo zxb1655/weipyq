@@ -8,9 +8,6 @@
       selfGood
     "
   >
-    <!-- 三角形 -->
-    <view class="triangleStyle"></view>
-
     <block v-if="pageData.comment.goodUserAvatarList != 0 || selfGood">
       <!-- 评论点赞栏 -->
       <view class="goodContentStyle">

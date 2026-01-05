@@ -7,6 +7,7 @@
 				@blur="blur"></input>
 		</view>
 		<view class="iconfont emojiIcon"></view>
+    <view class="iconfont imgIcon"></view>
 		<view class="sentBtn"
 			:style="{'backgroundColor':sendBtnCss.backgroundColor,'border':sendBtnCss.border,'color':sendBtnCss.color}"
 			@tap="_send">发送</view>
@@ -144,9 +145,8 @@
 	.input-module {
 		bottom: 0;
 		display: flex;
-		padding: 20upx;
-		padding-left: 35upx;
-		background-color: var(--grayLight);
+    padding: 20upx 20upx 20upx 35upx;
+    background-color: var(--grayLight);
 		align-items: center;
 		box-sizing: border-box;
 
@@ -168,12 +168,18 @@
 				font-size: 55upx;
 			}
 		}
-
+    .imgIcon {
+      padding-left: 10upx;
+      padding-right: 20upx;
+      font-size: 0;
+      &::before {
+        content: "\e608";
+        font-size: 61upx;
+      }
+    }
 		.sentBtn {
-			padding: 25upx;
-			padding-top: 10upx;
-			padding-bottom: 10upx;
-			text-align: center;
+      padding: 10upx 25upx;
+      text-align: center;
 			color: #c6c6c6;
 			border: #c6c6c6 1px solid;
 			border-radius: 10upx;

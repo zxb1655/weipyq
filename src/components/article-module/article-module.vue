@@ -51,7 +51,7 @@
           <date-item :date="pageData.article.date" />
         </view>
         <!-- 删除按钮 -->
-        <view class="deleteBtn active-gray" @tap="deleteBtn">删除</view>
+        <view class="iconfont shanchu" @tap="deleteBtn"></view>
 
         <!-- 点赞评论展开按钮 -->
         <view class="amRight">
@@ -191,7 +191,16 @@ export default {
         flex: 1;
       }
     }
-
+    .shanchu {
+      padding-left: 10upx;
+      padding-right: 20upx;
+      font-size: 0;
+      color: var(--blue);
+      &::before {
+        content: "\e65f";
+        font-size: 23upx;
+      }
+    }
     .userNickNameStyle {
       display: inline-block;
       color: var(--blue);
@@ -230,8 +239,8 @@ export default {
       justify-content: center;
       align-items: center;
       background-color: var(--grayLight);
-      width: 70upx;
-      height: 45upx;
+      width: 50upx;
+      height: 35upx;
       border-radius: 10upx;
 
       &:active {

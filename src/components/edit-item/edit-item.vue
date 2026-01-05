@@ -27,7 +27,7 @@
       v-if="type == 'switch'"
     >
       {{ title }}
-      <switch @change="switchChange" color="#07c160" />
+      <switch :checked="checked" @change="switchChange" color="#07c160" />
     </view>
     <view
       class="set-item-text"
@@ -48,11 +48,6 @@ export default {
       return `icon-${this.icon}`;
     },
   },
-  data() {
-    return {
-      slideValue: 0,
-    };
-  },
   methods: {
     sliderChange(e) {
       this.slideValue = e.detail.value;
@@ -63,34 +58,20 @@ export default {
     },
   },
   props: {
-    type: {
-      type: String,
-      default: "text",
-    },
-    max: {
-      type: Number | String,
-      default: 100,
-    },
-    title: {
-      type: String,
-      default: "标签内容",
-    },
-    icon: {
-      type: String,
-      default: "good",
-    },
-    arrow: {
-      type: Boolean,
-      default: false,
-    },
-    rightText: {
-      type: String | Number,
-      default: "",
-    },
-    finish: {
-      type: Boolean,
-      default: false,
-    },
+    type:        { type: String,  default: 'text' },
+    max:         { type: Number,  default: 100 },
+    title:       { type: String,  default: '标签内容' },
+    icon:        { type: String,  default: 'good' },
+    arrow:       { type: Boolean, default: false },
+    rightText:   { type: [String, Number], default: '' },
+    finish:      { type: Boolean, default: false },
+    checked:     { type: Boolean, default: false },   // 新增
+    value:       { type: Number,  default: 0 }        // 新增
+  },
+  data() {
+    return {
+      slideValue: this.value
+    };
   },
 };
 </script>
